@@ -17,5 +17,10 @@ To facilitate B2B governance where patients can share specific data "envelopes" 
 - **Art. 13 (Portability)**: The user has the power to "carry" their data to different doctors by simply creating new key wrappers.
 - **Data Sovereignty**: The B2B platform facilitates this exchange but **never sees the decrypted content** or the keys involved.
 
+## Access Patterns
+- **Single Access**: `AccessService.wrapKeyForDoctor()` grants access to a specific record.
+- **Multiple Access**: `AccessService.getAccessibleRecordsForDoctor(doctorPublicKey)` retrieves all records shared with a specific doctor.
+- **Patient Control**: `AccessService.getGrantsByPatient(patientWallet)` allows patients to see all active shares.
+
 ## Implementation Details
 The `AccessService.ts` demonstrates the lifecycle of granting, using, and revoking wrapped keys.

@@ -42,6 +42,12 @@ class MockDB {
     async getClinicalRecordsByPatient(patientId) {
         return Array.from(this.clinicalVault.values()).filter(r => r.patient_id === patientId);
     }
+    async getAllClinicalRecords() {
+        return Array.from(this.clinicalVault.values());
+    }
+    async getAllIdentities() {
+        return Array.from(this.identities.values());
+    }
     // Level 03: ACL sharing
     async grantAccess(node) {
         const access_id = uuidv4();
@@ -55,6 +61,9 @@ class MockDB {
     }
     async getACLForGrantee(granteePublicKey) {
         return Array.from(this.acl.values()).filter(a => a.grantee_public_key === granteePublicKey);
+    }
+    async getACLForGrantor(grantorId) {
+        return Array.from(this.acl.values()).filter(a => a.grantor_id === grantorId);
     }
     async revokeAccess(accessId) {
         return this.acl.delete(accessId);

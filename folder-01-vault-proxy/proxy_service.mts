@@ -46,6 +46,13 @@ export class ProxyService {
     }
 
     /**
+     * Fetches a specific record by its ID.
+     */
+    static async getRecordById(recordId: string): Promise<ClinicalRecord | undefined> {
+        return db.getClinicalRecord(recordId);
+    }
+
+    /**
      * Demonstrates the decoupling: Retrieving the identity from the record.
      * In a strict Vault-Proxy, this requires higher privilege.
      */
