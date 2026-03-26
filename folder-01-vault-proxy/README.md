@@ -16,5 +16,10 @@ To decouple **Personally Identifiable Information (PII)** from clinical records 
 - **Art. 6 (Finality/Necessity)**: We only expose the internal ID needed for the clinical operation, satisfying the principle of data minimization.
 - **Art. 12 (Anonymization)**: By breaking the link between identity and clinical data, the records are considered anonymized for external B2B processing, reducing legal liability.
 
+## Access Patterns
+- **Single Record**: `ProxyService.getRecordById(recordId)` retrieves a specific clinical entry.
+- **Multiple Records**: `ProxyService.getAnonymizedRecords(walletAddress)` returns all records linked to a specific patient wallet.
+- **B2B Global Vision**: `db.getAllClinicalRecords()` allows an administrator to view all records in an anonymized format.
+
 ## Implementation Details
 The `ProxyService.ts` implements the mediation layer that ensures this separation.

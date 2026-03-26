@@ -59,4 +59,20 @@ export class AccessService {
         );
         return decryptedKey.toString();
     }
+
+    /**
+     * Retrieves all records that a doctor has access to based on their public key.
+     */
+    static async getAccessibleRecordsForDoctor(doctorPublicKey: string): Promise<ACLNode[]> {
+        return db.getACLForGrantee(doctorPublicKey);
+    }
+
+    /**
+     * Retrieves all access grants given by a patient.
+     */
+    static async getGrantsByPatient(patientWallet: string): Promise<ACLNode[]> {
+        const patientIdentity = await db.getIdentityByWallet(patientWallet);
+        if (!patientIdentity) return [];
+        return db.getACLForGrantor(patientIdentity.internal_id);
+    }
 }

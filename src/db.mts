@@ -79,6 +79,14 @@ class MockDB {
         return Array.from(this.clinicalVault.values()).filter(r => r.patient_id === patientId);
     }
 
+    async getAllClinicalRecords(): Promise<ClinicalRecord[]> {
+        return Array.from(this.clinicalVault.values());
+    }
+
+    async getAllIdentities(): Promise<Identity[]> {
+        return Array.from(this.identities.values());
+    }
+
     // Level 03: ACL sharing
     async grantAccess(node: Omit<ACLNode, 'access_id' | 'created_at'>): Promise<ACLNode> {
         const access_id = uuidv4();
@@ -93,6 +101,10 @@ class MockDB {
 
     async getACLForGrantee(granteePublicKey: string): Promise<ACLNode[]> {
         return Array.from(this.acl.values()).filter(a => a.grantee_public_key === granteePublicKey);
+    }
+
+    async getACLForGrantor(grantorId: string): Promise<ACLNode[]> {
+        return Array.from(this.acl.values()).filter(a => a.grantor_id === grantorId);
     }
 
     async revokeAccess(accessId: string): Promise<boolean> {

@@ -38,6 +38,12 @@ export class ProxyService {
         return db.getClinicalRecordsByPatient(patientId);
     }
     /**
+     * Fetches a specific record by its ID.
+     */
+    static async getRecordById(recordId) {
+        return db.getClinicalRecord(recordId);
+    }
+    /**
      * Demonstrates the decoupling: Retrieving the identity from the record.
      * In a strict Vault-Proxy, this requires higher privilege.
      */

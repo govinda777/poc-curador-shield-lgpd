@@ -17,5 +17,9 @@ This architectural pattern satisfies the "Digital Hippocratic Oath":
 - The server *stores* the data but *cannot read* it.
 - The patient (and only the patient) holds the decryption "spark" (the wallet signature).
 
+## Access Patterns
+- **Individual Encryption**: Every clinical record is encrypted as a standalone blob.
+- **Batch Decryption**: The patient can retrieve multiple records and decrypt them using their master key derived from the wallet signature.
+
 ## Implementation Details
 The `EncryptionService.ts` handles the PBKDF2 derivation and the AES-GCM encryption/decryption lifecycle.
